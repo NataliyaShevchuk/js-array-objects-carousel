@@ -26,7 +26,122 @@
 //     "img/05.webp"
 // ];
 
-const listImgArray = [
+// const images = [
+//     {
+//         image: 'img/01.webp',
+//         title: 'Marvel\'s Spiderman Miles Morale',
+//         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+//     }, {
+//         image: 'img/02.webp',
+//         title: 'Ratchet & Clank: Rift Apart',
+//         text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+//     }, {
+//         image: 'img/03.webp',
+//         title: 'Fortnite',
+//         text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+//     }, {
+//         image: 'img/04.webp',
+//         title: 'Stray',
+//         text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+//     }, {
+//         image: 'img/05.webp',
+//         title: "Marvel's Avengers",
+//         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+//     }
+// ];
+
+// console.log(images);
+
+// let currentImgIndex = 0;
+
+// const slideImgEl = document.querySelector(".slide-img");
+// const slideContainerEl = document.querySelector(".slide-img-container");
+// const btnNext = document.getElementById("btnNext");
+// const btnPrev = document.getElementById("btnPrev");
+
+// slideImgEl.src = images[ currentImgIndex ].image;
+
+// for (let i = 0; i < images.length; i++){
+//     //stringa contenente l'url di una singola immagine
+//     const nowImg = images[ i ];
+
+//     const imgEl = document.createElement("img");
+
+//     imgEl.src = nowImg.image;
+//     imgEl.classList.add("img-fluid", "da-js");
+
+//     slideContainerEl.append( imgEl );
+
+//     const textContainer = document.getElementById("text-container");
+
+//     const titlEl = document.createElement("h5");
+//     titlEl.classList.add("title");
+//     titlEl.innerHTML = `${nowImg.title}`;
+//     textContainer.append(titlEl);
+
+//     const text = document.createElement("p");
+//     text.classList.add("text");
+//     text.innerHTML = `${nowImg.text}`; 
+//     textContainer.append(text);
+// }
+
+// btnNext.addEventListener("click", function () {
+//     console.log("next btn click");
+
+//     // const oldImg = document.querySelector(`.slide-img-container :nth-child(${currentImgIndex + 1 })`);
+//     // oldImg.classList.remove( "active" );
+//     currentImgIndex++;
+
+//     if( currentImgIndex > images.length - 1) {
+//         currentImgIndex = 0;
+//     }
+
+    
+//     slideImgEl.src = images[currentImgIndex].image;
+    
+//     //riattivo le immagini 
+//     // const newImg = document.querySelector(`.slide-img-container :nth-child(${ currentImgIndex + 1})`);
+//     // newImg.classList.add("active");
+
+// });
+
+// btnPrev.addEventListener("click", function () {
+//     console.log("Prev btn click");
+
+//     // const oldImg = document.querySelector(`.slide-img-container :nth-child(${currentImgIndex + 1 })`);
+//     // oldImg.classList.remove( "active" );
+
+//     currentImgIndex--;
+
+//     if( currentImgIndex < 0 ){
+//         currentImgIndex = images.length - 1;
+//     }
+//     slideImgEl.src = images[ currentImgIndex ].image;
+
+//     // const img = document.querySelector(`.slide-img-container :nth-child(${ currentImgIndex + 1})`);
+//     // img.classList.add("active");
+// });
+
+//////
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
+/*
+
+array di stirnge. ogni stringa è un'url di un'immagine.
+voglio un'immagine al centro e un bottone per andare avanti alla prossima immagine
+
+*/
+
+
+const immagini = [
     {
         image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
@@ -50,108 +165,58 @@ const listImgArray = [
     }
 ];
 
-console.log(listImgArray);
 
-const images = listImgArray.map(function(element) {
-    let listImg = element.image;
-    return listImg;
-});
+// const immagini = ['img/01.webp', 'img/02.webp', 'img/03.webp'];
 
-console.log(images);
-
-const title = listImgArray.map(function(element) {
-    let listTitle = element.title;
-    return listTitle;
-});
-
-console.log(title);
-
-const descriptionImg = listImgArray.map(function(element) {
-    let listText = element.text;
-    return listText;
-});
-
-console.log(descriptionImg);
+const immagine = document.getElementById("immagine-principale");
+const titlEl = document.getElementById("title");
+const text = document.getElementById("text");
 
 
+let immagineIndex = 0;
 
-let currentImgIndex = 0;
+console.log(immagini[0]);
+immagine.src = immagini[immagineIndex].image;
 
-const slideImgEl = document.querySelector(".slide-img");
-const slideContainerEl = document.querySelector(".slide-img-container");
-const btnNext = document.getElementById("btnNext");
-const btnPrev = document.getElementById("btnPrev");
+titlEl.innerHTML = immagini[immagineIndex].title;
+text.innerHTML = immagini[immagineIndex].text;
 
-slideImgEl.src = images[ currentImgIndex ];
 
-for (let i = 0; i < images.lenght; i++){
-    let active = "";
-    
-    if (active === 0){
-        active = "active";
-    }
-    slideContainerEl.innerHTML += `<img class="slide-img ${ active } "></img>`;
-}
+btnPrev.addEventListener("click", function(){
 
-for (let i = 0; i < images.lenght; i++){
-    //stringa contenente l'url di una singola immagine
-    const nowImg = images[ i ];
+    console.log('prima', immagineIndex);
 
-    const imgEl = document.createElement("img");
+    immagineIndex = immagineIndex - 1;
 
-    imgEl.src = nowImg;
-    imgEl.classList.add("img-fluid", "da-js");
+    if (immagineIndex == -1) {
 
-    slideContainerEl.append( imgEl );
-
-    const textContainer = document.getElementById("text-container");
-
-    const titlEl = document.createElement("h5");
-    titlEl.classList.add("title");
-    titlEl.innerHTML = `${listImgArray[i].title}`;
-    textContainer.append(titlEl);
-
-    const text = document.createElement("p");
-    text.classList.add("text");
-    text.innerHTML = `${listImgArray[i].text}`; 
-    textContainer.append(text);
-}
-
-btnNext.addEventListener("click", function () {
-    console.log("next btn click");
-
-    // const oldImg = document.querySelector(`.slide-img-container :nth-child(${currentImgIndex + 1 })`);
-    // oldImg.classList.remove( "active" );
-    currentImgIndex++;
-
-    const ultimoIndexDisponibile = images.length -1;
-
-    if( currentImgIndex > ultimoIndexDisponibile) {
-        currentImgIndex = 0;
+        immagineIndex = immagini.length - 1;
     }
 
-    
-    slideImgEl.src = images[currentImgIndex];
-    
-    //riattivo le immagini 
-    // const newImg = document.querySelector(`.slide-img-container :nth-child(${ currentImgIndex + 1})`);
-    // newImg.classList.add("active");
+    titlEl.innerHTML = immagini[immagineIndex].title;
+    text.innerHTML = immagini[immagineIndex].text;
+
+    console.log('dopo', immagineIndex);
+
+    immagine.src = immagini[immagineIndex].image;
 
 });
 
-btnPrev.addEventListener("click", function () {
-    console.log("Prev btn click");
+btnNext.addEventListener("click", function(){
 
-    // const oldImg = document.querySelector(`.slide-img-container :nth-child(${currentImgIndex + 1 })`);
-    // oldImg.classList.remove( "active" );
+    console.log('prima', immagineIndex);
 
-    currentImgIndex--;
+    immagineIndex = immagineIndex + 1;
 
-    if( currentImgIndex < 0 ){
-        currentImgIndex = ultimoIndexDisponibile;
+    if (immagineIndex == immagini.length) {
+
+        immagineIndex = 0;
     }
-    slideImgEl.src = images[ currentImgIndex ];
 
-    // const img = document.querySelector(`.slide-img-container :nth-child(${ currentImgIndex + 1})`);
-    // img.classList.add("active");
+    titlEl.innerHTML = immagini[immagineIndex].title;
+    text.innerHTML = immagini[immagineIndex].text;
+    console.log('dopo', immagineIndex);
+
+    immagine.src = immagini[immagineIndex].image;
+
 });
